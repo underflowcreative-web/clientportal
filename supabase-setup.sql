@@ -11,7 +11,8 @@ CREATE TABLE public.profiles (
   name TEXT NOT NULL,
   email TEXT NOT NULL,
   role TEXT NOT NULL DEFAULT 'client' CHECK (role IN ('admin', 'client')),
-  created_at TIMESTAMPTZ DEFAULT now()
+  created_at TIMESTAMPTZ DEFAULT now(),
+  updated_at TIMESTAMPTZ DEFAULT now()
 );
 CREATE INDEX idx_profiles_role ON public.profiles(role);
 
@@ -79,7 +80,7 @@ CREATE TABLE public.files (
   file_url TEXT NOT NULL,
   file_type TEXT,
   file_size BIGINT,
-  uploaded_by UUID NOT NULL REFERENCES public.profiles(id),
+  uploaded_by UUID NOT NULL REFERENCES public.profiles(id) ON DELETE CASCADE,
   uploaded_at TIMESTAMPTZ DEFAULT now()
 );
 CREATE INDEX idx_files_project_id ON public.files(project_id);
@@ -96,7 +97,7 @@ CREATE TABLE public.change_requests (
     CHECK (priority IN ('Low', 'Medium', 'High')),
   status TEXT NOT NULL DEFAULT 'Pending'
     CHECK (status IN ('Pending', 'In Progress', 'Completed')),
-  created_by UUID NOT NULL REFERENCES public.profiles(id),
+  created_by UUID NOT NULL REFERENCES public.profiles(id) ON DELETE CASCADE,
   created_at TIMESTAMPTZ DEFAULT now(),
   updated_at TIMESTAMPTZ DEFAULT now()
 );

@@ -7,6 +7,7 @@ import { Profile } from '@/lib/types'
 import Sidebar from '@/components/layout/Sidebar'
 import Topbar from '@/components/layout/Topbar'
 import type { User } from '@supabase/supabase-js'
+import BirdAssistant from '@/components/ui/BirdAssistant'
 
 interface AdminContextType {
   user: User
@@ -23,6 +24,9 @@ export function useAdminUser(): AdminContextType {
   }
   return context
 }
+
+// Alias for consistency with dashboard layout imports
+export const useUser = useAdminUser
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   const router = useRouter()
@@ -44,14 +48,18 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         return
       }
 
-      const { data: profileData } = await supabase
+      setUser(authUser)
+
+      const { data: profileData, error } = await supabase
         .from('profiles')
         .select('*')
         .eq('id', authUser.id)
         .single()
 
-      if (!profileData) {
-        router.push('/login')
+      if (error || !profileData) {
+        console.warn('Admin profile fetch failed:', error)
+        setProfile(null)
+        setLoading(false)
         return
       }
 
@@ -61,7 +69,6 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         return
       }
 
-      setUser(authUser)
       setProfile(profileData as Profile)
       setLoading(false)
     }
@@ -69,12 +76,36 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     fetchUserProfile()
   }, [router])
 
-  if (loading || !user || !profile) {
+  if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
           <div className="w-8 h-8 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin" />
           <p className="text-sm text-gray-500">Loading...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (!user || !profile) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+        <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-200 w-full max-w-md text-center">
+          <h2 className="text-lg font-semibold text-red-600 mb-2">Database Access Denied or Profile Not Found</h2>
+          <p className="text-sm text-gray-500 mb-6">
+            We logged you in, but could not read your profile from the database. 
+            This is usually because database table permissions need to be granted in Supabase.
+          </p>
+          <button
+            onClick={async () => {
+              const supabase = createClient()
+              await supabase.auth.signOut()
+              router.push('/login')
+            }}
+            className="px-4 py-2 bg-gray-900 text-white rounded-md text-sm hover:bg-gray-800 cursor-pointer"
+          >
+            Sign Out & Try Again
+          </button>
         </div>
       </div>
     )
@@ -101,6 +132,9 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
             {children}
           </main>
         </div>
+        
+        {/* Floating Royal Scribe AI Assistant */}
+        <BirdAssistant />
       </div>
     </AdminUserContext.Provider>
   )
