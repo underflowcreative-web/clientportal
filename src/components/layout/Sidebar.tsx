@@ -84,10 +84,10 @@ export default function Sidebar({ userRole, currentPath, isOpen = false, onClose
   const links = userRole === 'admin' ? adminLinks : clientLinks
 
   const sidebarContent = (
-    <div className="w-64 bg-white border-r border-gray-200 h-screen flex flex-col">
+    <div className="w-64 bg-[#FF007F] border-r-4 border-black h-screen flex flex-col">
       {/* Brand */}
-      <div className="px-6 py-5 border-b border-gray-100">
-        <span className="text-xl font-bold text-gray-900">ClientHub</span>
+      <div className="px-6 py-5 border-b-4 border-black">
+        <span className="text-xl font-black text-white uppercase tracking-widest" style={{ fontFamily: 'Impact, Arial Black, sans-serif', textShadow: '2px 2px 0px #000' }}>⬢ CLIENTHUB</span>
       </div>
 
       {/* Navigation */}
@@ -99,10 +99,10 @@ export default function Sidebar({ userRole, currentPath, isOpen = false, onClose
               key={link.href}
               href={link.href}
               onClick={onClose}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-colors duration-150 ${
+              className={`flex items-center gap-3 px-3 py-2.5 text-sm font-black uppercase tracking-wider transition-all duration-150 border-2 ${
                 active
-                  ? 'bg-blue-50 text-blue-700'
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  ? 'bg-black text-[#FAF33E] border-[#FAF33E] shadow-[3px_3px_0px_#FAF33E]'
+                  : 'text-white border-transparent hover:bg-black/30 hover:border-white hover:shadow-[2px_2px_0px_#000]'
               }`}
             >
               {link.icon}
@@ -113,19 +113,19 @@ export default function Sidebar({ userRole, currentPath, isOpen = false, onClose
       </nav>
 
       {/* Bottom user section */}
-      <div className="px-4 py-4 border-t border-gray-100">
+      <div className="px-4 py-4 border-t-4 border-black">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+          <div className="w-8 h-8 bg-black border-2 border-white flex items-center justify-center">
             <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
             </svg>
           </div>
           <div className="flex-1 min-w-0">
             <span
-              className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${
+              className={`inline-block px-2 py-0.5 border-2 border-black text-xs font-black uppercase ${
                 userRole === 'admin'
-                  ? 'bg-blue-50 text-blue-700'
-                  : 'bg-gray-100 text-gray-700'
+                  ? 'bg-[#FAF33E] text-black shadow-[2px_2px_0px_#000]'
+                  : 'bg-white text-black shadow-[2px_2px_0px_#000]'
               }`}
             >
               {userRole === 'admin' ? 'Admin' : 'Client'}

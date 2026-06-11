@@ -113,8 +113,8 @@ export default function BirdAssistant() {
           50% { transform: translateY(-4px) rotate(1deg); }
         }
         @keyframes softPulseGlow {
-          0%, 100% { filter: drop-shadow(0 0 4px rgba(215, 137, 127, 0.4)); }
-          50% { filter: drop-shadow(0 0 10px rgba(215, 137, 127, 0.7)); }
+          0%, 100% { filter: drop-shadow(0 0 4px rgba(255, 0, 127, 0.6)); }
+          50% { filter: drop-shadow(0 0 14px rgba(255, 0, 127, 0.9)); }
         }
         .phoenix-hover-float {
           animation: gentleFloat 3s infinite ease-in-out, softPulseGlow 3s infinite ease-in-out;
@@ -124,12 +124,12 @@ export default function BirdAssistant() {
       {/* "May I help you" Speech Bubble (Visible only when closed) */}
       {!isOpen && (
         <div className="fixed right-20 bottom-8 flex items-center pointer-events-none z-50 animate-bounce">
-          <div className="bg-white border border-[#EADFD9] text-[#3A2E2C] text-xs font-semibold px-3.5 py-2 rounded-full shadow-[0_4px_12px_rgba(99,152,169,0.06)] flex items-center gap-1.5 whitespace-nowrap">
-            <span className="w-1.5 h-1.5 bg-[#96C7B3] rounded-full animate-pulse" />
-            May I help you?
+          <div className="bg-[#FAF33E] border-[3px] border-black text-black text-xs font-black uppercase tracking-wider px-3.5 py-2 flex items-center gap-1.5 whitespace-nowrap" style={{ boxShadow: '3px 3px 0px #000' }}>
+            <span className="w-1.5 h-1.5 bg-[#FF007F] rounded-full animate-pulse" />
+            ★ MAY I HELP YOU? ★
           </div>
           {/* Bubble Arrow pointing to the bird */}
-          <div className="w-2 h-2 bg-white border-r border-b border-[#EADFD9] rotate-[-45deg] -translate-x-1" />
+          <div className="w-2 h-2 bg-[#FAF33E] border-r-[3px] border-b-[3px] border-black rotate-[-45deg] -translate-x-1" />
         </div>
       )}
 
@@ -146,9 +146,9 @@ export default function BirdAssistant() {
           >
             <defs>
               <linearGradient id="pastelFireGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#F9B95C" /> {/* Pêche */}
-                <stop offset="60%" stopColor="#D7897F" /> {/* Nectarine */}
-                <stop offset="100%" stopColor="#C3766D" />
+                <stop offset="0%" stopColor="#FF007F" />
+                <stop offset="50%" stopColor="#FF6B00" />
+                <stop offset="100%" stopColor="#FAF33E" />
               </linearGradient>
             </defs>
             {/* Left Wing */}
@@ -170,7 +170,7 @@ export default function BirdAssistant() {
             {/* Inner Flame Streak */}
             <path 
               d="M 30,32 C 30,40 27,47 32,53 C 37,47 34,40 34,32 Z" 
-              fill="#F9B95C" 
+              fill="#FAF33E" 
               opacity="0.8" 
             />
             {/* Body */}
@@ -179,31 +179,31 @@ export default function BirdAssistant() {
               fill="url(#pastelFireGrad)" 
             />
             {/* Head & Crest */}
-            <circle cx="32" cy="15" r="4.5" fill="#F9B95C" />
-            <polygon points="32,9 34,13 30,13" fill="#D7897F" />
+            <circle cx="32" cy="15" r="4.5" fill="#FAF33E" />
+            <polygon points="32,9 34,13 30,13" fill="#FF007F" />
             {/* Beak */}
-            <polygon points="32,12 35,15 32,15" fill="#F9B95C" />
+            <polygon points="32,12 35,15 32,15" fill="#FAF33E" />
           </svg>
         </div>
       </div>
 
-      {/* Chat Window (frosted-glass pastel design) */}
+      {/* Chat Window (Neo-Brutalist design) */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-80 sm:w-96 h-[460px] bg-white/95 backdrop-blur-md border border-[#EADFD9] rounded-2xl shadow-[0_20px_50px_rgba(99,152,169,0.12)] flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 duration-300">
+        <div className="fixed bottom-6 right-6 w-80 sm:w-96 h-[460px] bg-[#0a0a0a] border-[4px] border-black flex flex-col overflow-hidden" style={{ boxShadow: '8px 8px 0px #FF007F' }}>
           {/* Header */}
-          <div className="bg-gradient-to-r from-[#FAF6F2] to-[#F5ECE8] px-4 py-3 border-b border-[#EADFD9] flex items-center gap-3 pl-16">
+          <div className="bg-[#FF007F] px-4 py-3 border-b-4 border-black flex items-center gap-3 pl-16">
             <div>
-              <p className="text-sm font-semibold text-[#D7897F] tracking-wide uppercase">ClientHub Assistant</p>
+              <p className="text-sm font-black text-white tracking-widest uppercase" style={{ textShadow: '1px 1px 0px #000' }}>CLIENTHUB ASSISTANT</p>
               <div className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 bg-[#96C7B3] rounded-full animate-pulse" />
-                <span className="text-[10px] text-[#7E6E6A] font-semibold uppercase tracking-wider">Online</span>
+                <span className="w-1.5 h-1.5 bg-[#00FF66] rounded-full animate-pulse" />
+                <span className="text-[10px] text-white/80 font-black uppercase tracking-wider">ONLINE</span>
               </div>
             </div>
             
             {/* Close Button */}
             <button 
               onClick={() => setIsOpen(false)}
-              className="ml-auto text-[#7E6E6A] hover:text-[#D7897F] transition-colors"
+              className="ml-auto text-white/70 hover:text-[#FAF33E] transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -222,16 +222,16 @@ export default function BirdAssistant() {
                 }`}
               >
                 <div
-                  className={`max-w-[80%] rounded-xl px-4 py-2.5 text-sm leading-relaxed ${
+                  className={`max-w-[80%] px-4 py-2.5 text-sm leading-relaxed border-[2px] border-black ${
                     msg.sender === "user"
-                      ? "bg-[#6398A9] text-white font-medium rounded-tr-none shadow-[0_4px_12px_rgba(99,152,169,0.2)]"
-                      : "bg-[#F5ECE8] text-[#3A2E2C] border border-[#EADFD9]/60 rounded-tl-none shadow-sm"
+                      ? "bg-[#00F0FF] text-black font-bold shadow-[3px_3px_0px_#000]"
+                      : "bg-[#1a1a1a] text-white border-[#333] shadow-[2px_2px_0px_#FF007F]"
                   }`}
                 >
                   <p>{msg.text}</p>
                   <span
                     className={`block text-[9px] mt-1 text-right ${
-                      msg.sender === "user" ? "text-white/70" : "text-[#7E6E6A]"
+                      msg.sender === "user" ? "text-black/60" : "text-white/50"
                     }`}
                   >
                     {msg.timestamp.toLocaleTimeString([], {
@@ -248,7 +248,7 @@ export default function BirdAssistant() {
           {/* Input Form */}
           <form
             onSubmit={handleSend}
-            className="p-3 bg-[#FAF6F2]/80 border-t border-[#EADFD9] flex gap-2"
+            className="p-3 bg-[#111] border-t-4 border-black flex gap-2"
           >
             <div className="flex-1">
               <input
@@ -256,12 +256,12 @@ export default function BirdAssistant() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask the assistant..."
-                className="w-full bg-white border border-[#EADFD9] rounded-lg px-3 py-2 text-sm text-[#3A2E2C] placeholder-gray-400 focus:outline-none focus:border-[#6398A9]/60 focus:ring-1 focus:ring-[#6398A9]/60"
+                className="w-full bg-[#1a1a1a] border-[3px] border-[#333] px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#FF007F]"
               />
             </div>
             <button
               type="submit"
-              className="bg-[#6398A9] hover:bg-[#D7897F] text-white font-semibold px-4 rounded-lg text-sm flex items-center justify-center cursor-pointer transition-colors"
+              className="bg-[#FF007F] hover:bg-[#FF6B00] text-white font-black uppercase tracking-wider px-4 text-sm flex items-center justify-center cursor-pointer transition-colors border-[3px] border-black shadow-[2px_2px_0px_#000]"
             >
               Send
             </button>

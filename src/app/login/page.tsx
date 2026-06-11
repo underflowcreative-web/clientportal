@@ -32,7 +32,6 @@ export default function LoginPage() {
         return
       }
 
-      // Fetch profile to determine role
       const { data: { user } } = await supabase.auth.getUser()
 
       if (!user) {
@@ -59,118 +58,132 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAF6F2] flex flex-col md:flex-row relative overflow-hidden">
-      {/* Left Column: Premium Wave Art & Welcome Quote (Desktop only) */}
-      <div className="hidden md:flex md:w-1/2 relative flex-col justify-between p-16 overflow-hidden">
-        {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-10000 hover:scale-105"
-          style={{ backgroundImage: "url('/pastel_premium_bg.png')" }}
-        />
-        {/* Subtle Warm Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#FAF6F2]/60 via-[#FAF6F2]/10 to-transparent" />
-        <div className="absolute inset-0 bg-white/5" />
-
-        {/* Top: Logo & Geometric Icon */}
-        <div className="relative z-10 flex items-center gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D7897F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/>
-            <line x1="12" y1="22" x2="12" y2="15.5"/>
-            <polyline points="22 8.5 12 15.5 2 8.5"/>
-            <polyline points="2 15.5 12 8.5 22 15.5"/>
-            <line x1="12" y1="2" x2="12" y2="8.5"/>
-          </svg>
-          <span className="brand-font text-lg font-bold text-[#3A2E2C] tracking-wider">ClientHub</span>
+    <div className="min-h-screen bg-[#0a0a0a] flex flex-col md:flex-row relative overflow-hidden">
+      {/* Left Column: Wild Collage Poster */}
+      <div className="hidden md:flex md:w-1/2 relative flex-col justify-between overflow-hidden" style={{ background: 'linear-gradient(135deg, #FF007F 0%, #FF6B00 30%, #FAF33E 60%, #00FF66 80%, #00F0FF 100%)' }}>
+        {/* Overlay pattern */}
+        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.3) 1px, transparent 1px)', backgroundSize: '8px 8px' }} />
+        
+        {/* Diagonal tape decorations */}
+        <div className="absolute top-4 left-4 bg-[#FAF33E] border-[3px] border-black px-4 py-1 font-black text-black text-xs uppercase tracking-widest" style={{ transform: 'rotate(-5deg)', boxShadow: '3px 3px 0px #000' }}>
+          HIGH IMPACT // RADICAL DESIGN
+        </div>
+        
+        <div className="absolute top-16 left-4 flex items-center gap-2 z-10">
+          <div className="w-6 h-6 bg-[#00FF66] border-[3px] border-black" style={{ transform: 'rotate(12deg)' }} />
+          <span className="font-black text-black text-sm uppercase tracking-wider drop-shadow-[2px_2px_0px_rgba(255,255,255,0.5)]">⬢ CLIENTHUB</span>
         </div>
 
-        {/* Center: Majestic Quote */}
-        <div className="relative z-10 space-y-4 max-w-md">
-          <p className="brand-font text-3xl md:text-4xl text-[#3A2E2C] font-bold leading-tight tracking-wide drop-shadow-sm">
-            Collaborate, Create, and Elevate Your Brand.
-          </p>
-          <div className="w-16 h-0.5 bg-[#D7897F]/50" />
-          <p className="text-sm text-[#7E6E6A] leading-relaxed font-light">
-            Welcome to your premium project workspace. Track real-time progress, upload files, and collaborate in comfort.
-          </p>
+        {/* Center: Big Bold Message */}
+        <div className="relative z-10 flex-1 flex items-center px-12">
+          <div>
+            <div className="bg-[#FF007F] border-[4px] border-black inline-block px-6 py-4 mb-4" style={{ boxShadow: '6px 6px 0px #000', transform: 'rotate(-1deg)' }}>
+              <h1 className="text-4xl md:text-5xl font-black text-white uppercase leading-none tracking-tight" style={{ fontFamily: 'Impact, Arial Black, sans-serif', textShadow: '3px 3px 0px #000' }}>
+                COLLABORATE,<br/>CREATE,<br/>ELEVATE.
+              </h1>
+            </div>
+            <div className="bg-[#00FF66] border-[3px] border-black inline-block px-4 py-2 mt-2" style={{ boxShadow: '4px 4px 0px #000', transform: 'rotate(1deg)' }}>
+              <p className="text-xs text-black font-black uppercase tracking-wider">
+                Welcome to your premium interactive workspace.<br/>
+                Track real-time progress, upload files, and<br/>
+                collaborate in comfort.
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* Bottom: Footer */}
-        <div className="relative z-10 text-xs text-[#7E6E6A]/75 tracking-wider">
-          © 2026 Underflow Creative. All rights reserved.
+        {/* Bottom decorative elements */}
+        <div className="relative z-10 px-8 pb-6">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="bg-[#FAF33E] border-[2px] border-black px-3 py-1 text-[10px] font-black text-black uppercase" style={{ transform: 'rotate(-2deg)' }}>POWER UP ⚡</span>
+            <span className="bg-[#00F0FF] border-[2px] border-black px-3 py-1 text-[10px] font-black text-black uppercase" style={{ transform: 'rotate(2deg)' }}>NO RULES</span>
+          </div>
+          <p className="text-black font-black text-sm uppercase tracking-widest" style={{ textShadow: '1px 1px 0px rgba(255,255,255,0.5)' }}>
+            EST. 1988 // LONDON / NYC
+          </p>
+          <p className="text-[10px] text-black/70 font-bold uppercase tracking-wider mt-1">
+            © 2026 UNDERFLOW CREATIVE
+          </p>
+          <p className="text-xl font-black text-black uppercase tracking-widest mt-2" style={{ fontFamily: 'Impact, Arial Black, sans-serif', textShadow: '2px 2px 0px rgba(255,255,255,0.3)' }}>
+            ★ REVOLUTION ★<br/>VISUAL DISRUPTION
+          </p>
         </div>
       </div>
 
-      {/* Right Column: Premium Login Form Card */}
-      <div className="w-full md:w-1/2 flex items-center justify-center p-8 bg-[#FAF6F2] z-10 relative">
-        <div className="bg-white p-8 md:p-10 rounded-2xl border border-[#EADFD9] w-full max-w-md shadow-[0_8px_30px_rgb(99,152,169,0.08)] relative">
-          {/* Subtle brand highlight at top of card */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-0.5 bg-gradient-to-r from-transparent via-[#D7897F] to-transparent" />
+      {/* Right Column: Login Form with dot-matrix */}
+      <div className="w-full md:w-1/2 flex items-center justify-center p-8 bg-[#f5f5f0] relative z-10">
+        {/* Dot matrix overlay */}
+        <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, #ccc 1px, transparent 1px)', backgroundSize: '14px 14px', opacity: 0.4 }} />
+        
+        {/* Corner tape */}
+        <div className="absolute top-4 right-4 bg-[#00FF66] border-[2px] border-black px-3 py-1 text-[8px] font-black text-black uppercase" style={{ transform: 'rotate(8deg)', boxShadow: '2px 2px 0px #000' }}>
+          CONFIDENTIAL ★
+        </div>
 
+        <div className="bg-white border-[4px] border-black p-8 md:p-10 w-full max-w-md relative" style={{ boxShadow: '8px 8px 0px #000' }}>
           {/* Form Header */}
           <div className="text-center mb-8">
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="40" 
-              height="40" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="#D7897F" 
-              strokeWidth="1.5" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-              className="mx-auto mb-4"
-            >
-              <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/>
-              <line x1="12" y1="22" x2="12" y2="15.5"/>
-              <polyline points="22 8.5 12 15.5 2 8.5"/>
-              <polyline points="2 15.5 12 8.5 22 15.5"/>
-              <line x1="12" y1="2" x2="12" y2="8.5"/>
-            </svg>
-            <h1 className="text-2xl font-bold text-[#3A2E2C] tracking-wider">
+            <div className="w-12 h-12 bg-[#FAF33E] border-[3px] border-black mx-auto mb-4 flex items-center justify-center" style={{ boxShadow: '3px 3px 0px #000', transform: 'rotate(6deg)' }}>
+              <span className="text-xl">⬢</span>
+            </div>
+            <h1 className="text-2xl font-black text-black uppercase tracking-wider" style={{ fontFamily: 'Impact, Arial Black, sans-serif' }}>
               CLIENT PORTAL
             </h1>
-            <p className="text-xs text-[#6398A9] font-semibold uppercase tracking-widest mt-1">
-              Sign In to Your Workspace
-            </p>
+            <div className="inline-block bg-[#FF007F] border-[2px] border-black px-3 py-0.5 mt-2" style={{ boxShadow: '2px 2px 0px #000', transform: 'rotate(-1deg)' }}>
+              <span className="text-[10px] text-white font-black uppercase tracking-widest">SECURE SIGN IN ★</span>
+            </div>
           </div>
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
-            <Input
-              label="Email Address"
-              type="email"
-              placeholder="client@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              autoComplete="email"
-            />
+            <div>
+              <label className="block text-xs font-black text-black uppercase tracking-wider mb-1.5">Email Address</label>
+              <input
+                type="email"
+                placeholder="client@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                autoComplete="email"
+                className="w-full bg-white border-[3px] border-black px-4 py-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:border-[#FF007F] focus:ring-0" 
+                style={{ boxShadow: '3px 3px 0px #000' }}
+              />
+            </div>
 
-            <Input
-              label="Password"
-              type="password"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              autoComplete="current-password"
-            />
+            <div>
+              <label className="block text-xs font-black text-black uppercase tracking-wider mb-1.5">Password</label>
+              <input
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                autoComplete="current-password"
+                className="w-full bg-white border-[3px] border-black px-4 py-3 text-sm text-black placeholder-gray-400 focus:outline-none focus:border-[#FF007F] focus:ring-0"
+                style={{ boxShadow: '3px 3px 0px #000' }}
+              />
+            </div>
 
             {error && (
-              <div className="text-red-500 text-xs bg-red-50 border border-red-200 p-3 rounded-md mt-2 text-center font-medium">
-                {error}
+              <div className="bg-[#FF6B00] border-[3px] border-black text-white text-xs font-bold p-3 uppercase" style={{ boxShadow: '3px 3px 0px #000' }}>
+                ⚠ {error}
               </div>
             )}
 
-            <Button
+            <button
               type="submit"
-              variant="primary"
               disabled={loading}
-              className="w-full mt-6 bg-[#6398A9] hover:bg-[#D7897F] text-white font-semibold py-3 rounded-lg shadow-[0_4px_14px_rgba(99,152,169,0.3)] hover:shadow-[0_4px_14px_rgba(215,137,127,0.3)] hover:scale-[1.01] active:scale-[0.99] transition-all border-none cursor-pointer"
+              className="w-full mt-4 bg-black text-white font-black py-3.5 text-sm uppercase tracking-widest border-[3px] border-black hover:bg-[#FF007F] hover:text-white active:translate-x-[3px] active:translate-y-[3px] active:shadow-none transition-all cursor-pointer"
+              style={{ boxShadow: '4px 4px 0px #FF007F' }}
             >
-              {loading ? 'Signing In...' : 'Sign In to Portal'}
-            </Button>
+              {loading ? 'SIGNING IN...' : 'SIGN IN TO PORTAL'}
+            </button>
           </form>
+
+          {/* Bottom tape */}
+          <div className="absolute -bottom-3 -right-3 bg-[#FAF33E] border-[2px] border-black px-3 py-1 text-[8px] font-black text-black uppercase" style={{ transform: 'rotate(5deg)', boxShadow: '2px 2px 0px #000' }}>
+            ACCESS ONLY ★
+          </div>
         </div>
       </div>
     </div>

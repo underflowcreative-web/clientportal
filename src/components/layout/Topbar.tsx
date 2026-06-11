@@ -22,7 +22,14 @@ export default function Topbar({ userName, userRole, onMenuClick }: TopbarProps)
   }
 
   return (
-    <header className="sticky top-0 z-10 bg-white border-b border-gray-200">
+    <header className="sticky top-0 z-10 bg-[#0a0a0a] border-b-4 border-[#FAF33E]">
+      {/* Scrolling Marquee Ticker */}
+      <div className="bg-[#FAF33E] border-b-2 border-black overflow-hidden py-1">
+        <div className="marquee-track flex whitespace-nowrap">
+          <span className="text-[10px] font-black text-black uppercase tracking-widest px-8">★ STATUS: DEVELOPMENT UNDERWAY ★ 100% COLLABORATIVE ★ LET&apos;S GO ★ CLIENTHUB PORTAL ACTIVE ★ STATUS: DEVELOPMENT UNDERWAY ★ 100% COLLABORATIVE ★ LET&apos;S GO ★ CLIENTHUB PORTAL ACTIVE ★</span>
+          <span className="text-[10px] font-black text-black uppercase tracking-widest px-8">★ STATUS: DEVELOPMENT UNDERWAY ★ 100% COLLABORATIVE ★ LET&apos;S GO ★ CLIENTHUB PORTAL ACTIVE ★ STATUS: DEVELOPMENT UNDERWAY ★ 100% COLLABORATIVE ★ LET&apos;S GO ★ CLIENTHUB PORTAL ACTIVE ★</span>
+        </div>
+      </div>
       <div className="h-16 px-4 lg:px-8 flex items-center justify-between">
         {/* Left side */}
         <div className="flex items-center gap-4">
